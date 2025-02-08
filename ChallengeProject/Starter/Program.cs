@@ -289,38 +289,79 @@ do
             // Ensure animal ages and physical descriptions are complete
             // get the pet's age. 
 
-            for (int i = 0; i < maxPets; i++)
+
+            do
             {
-                if (ourAnimals[i, 0] != "ID #: ")
+                Console.WriteLine($"Enter an age  for ID #: c4 ");
+                readResult = Console.ReadLine();
+                if (readResult != null)
                 {
-                    Console.WriteLine();
-                    
-                }
-            }
-                do
-                {
-                    Console.WriteLine($"Enter an age  for ID #: {animalID} ");
-                    readResult = Console.ReadLine();
-                    if (readResult != null)
+                    animalAge = readResult;
+                    if (animalAge != "?")
                     {
-                        animalAge = readResult;
-                        if (animalAge != "?")
-                        {
-                            validEntry = int.TryParse(animalAge, out petAge);
-                        }
-                        else
-                        {
-                            validEntry = true;
-                        }
+                        validEntry = int.TryParse(animalAge, out petAge);
                     }
-                } while (validEntry == false);
+                    else
+                    {
+                        validEntry = true;
+                    }
+                }
+            } while (validEntry == false);
+
+           
+
+            // get a description of the pet's physical appearance - animalPhysicalDescription can be blank.
+            do
+            {
+                Console.WriteLine("Enter a physical description for ID # C4 (size, color, gender, weight, housebroken)");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalPhysicalDescription = readResult.ToLower();
+                    if (animalPhysicalDescription == "")
+                    {
+                        animalPhysicalDescription = "tbd";
+                    }
+                }
+            } while (validEntry == false);
+
+
+            Console.WriteLine("Age and physical description fields are complete for all of our friends. ");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
 
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
-            Console.WriteLine("Challenge Project - please check back soon to see progress.");
+            
+            // get the pet's nickname. animalNickname can be blank.
+                do
+                {
+                    Console.WriteLine("Enter a nickname for ID #: c4");
+                    readResult = Console.ReadLine();
+                    if (readResult != null)
+                    {
+                        animalNickname = readResult.ToLower();
+                        if (animalNickname == "")
+                        {
+                            Console.WriteLine("Enter a nickname for ID #: c4");
+                             animalNickname = readResult.ToLower();
+                        }
+                    }
+                } while (validEntry == false);
+// get a description of the pet's personality - animalPersonalityDescription can be blank.
+                do
+                {
+                    Console.WriteLine("Enter a  personality description dor ID #: c4 (likes or dislikes, tricks, energy level)");
+                    readResult = Console.ReadLine();
+                    if (readResult != null)
+                    {
+                        animalPersonalityDescription = readResult.ToLower();
+
+                    }
+                } while (validEntry == false);
+
+            Console.WriteLine("Nickname and personality description fields are complete for all of our friends.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
@@ -338,7 +379,7 @@ do
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
-        
+
         case "7":
             // Display all cats with a specified characteristic
             Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
