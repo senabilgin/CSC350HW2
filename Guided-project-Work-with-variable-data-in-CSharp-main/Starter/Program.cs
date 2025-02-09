@@ -11,6 +11,7 @@ string suggestedDonation = "";
 int maxPets = 8;
 string? readResult;
 string menuSelection = "";
+decimal decimalDonation = 0.00m;
 
 // #3 array used to store runtime data, there is no persisted data
 string[,] ourAnimals = new string[maxPets, 7];
@@ -37,7 +38,7 @@ for (int i = 0; i < maxPets; i++)
             animalPhysicalDescription = "large reddish-brown male golden retriever weighing about 85 pounds. housebroken.";
             animalPersonalityDescription = "loves to have his ears rubbed when he greets you at the door, or at any time! loves to lean-in and give doggy hugs.";
             animalNickname = "gus";
-            suggestedDonation = "49.99"'
+            suggestedDonation = "49.99";
             break;
         
         case 2:
@@ -78,8 +79,14 @@ for (int i = 0; i < maxPets; i++)
     ourAnimals[i, 3] = "Nickname: " + animalNickname;
     ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
     ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
+    ourAnimals[i, 6] = "Suggested Donations: " + suggestedDonation;
     
+    if (!decimal.TryParse(suggestedDonation, out decimalDonation)){
+        decimalDonation = 45.00m; // if suggested donation not a number, default to 45.00
+    }
+ourAnimals[i, 6] = $"Suggested Donation: { decimalDonation:C2} " ;
 }
+ 
 
 // #5 display the top-level menu options
 do
@@ -109,7 +116,7 @@ do
                 if (ourAnimals[i, 0] != "ID #: ")
                 {
                     Console.WriteLine();
-                    for (int j = 0; j < 6; j++)
+                    for (int j = 0; j < 7; j++)
                     {
                         Console.WriteLine(ourAnimals[i, j]);
                     }
